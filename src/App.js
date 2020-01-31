@@ -1,8 +1,24 @@
 import React from "react";
-import { render } from "react-dom";
+import { Switch, Route } from "react-router-dom";
+
+import Header from "./components/Header";
+import Cart from "./pages/Cart";
+import Photos from "./pages/Photos";
 
 function App() {
-  return <div id="app">App</div>;
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Photos />
+        </Route>
+        <Route path="/cart">
+          <Cart />
+        </Route>
+      </Switch>
+    </div>
+  );
 }
 
-render(<App />, document.getElementById("root"));
+export default App;
