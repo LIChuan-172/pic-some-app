@@ -30,11 +30,15 @@ function ContextProvider(props) {
   }
 
   function addToCart(image) {
-    setCartItems(prevItems => [...new Set([...prevItems, image])]);
+    setCartItems(prevItems => [...prevItems, image]);
   }
 
   function removeFromCart(id) {
     setCartItems(prevItems => prevItems.filter(item => item.id != id));
+  }
+
+  function cleanCart(){
+    setCartItems([])
   }
 
   return (
@@ -44,7 +48,8 @@ function ContextProvider(props) {
         toggleFavorite,
         cartItems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        cleanCart
       }}
     >
       {props.children}
