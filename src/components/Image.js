@@ -3,10 +3,10 @@ import { Context } from "../ContextPics";
 import { PropTypes } from "prop-types";
 
 function Image({ className, image }) {
-  const { toggleFavorite, cartItems, addImage } = useContext(Context);
-  
+  const { toggleFavorite, cartItems, addToCart, removeFromCart } = useContext(Context);
+
   const [hovered, setHovered] = useState(false);
-  const isInCart = cartItems.some(item => item.id == image.id)
+  const isInCart = cartItems.some(item => item.id == image.id);
 
   const heartIcon = (hovered || image.isFavorite) && (
     <i
@@ -20,7 +20,7 @@ function Image({ className, image }) {
       className={`ri-${
         isInCart ? "shopping-cart-fill" : "add-circle-line"
       } cart`}
-      onClick={() => isInCart || addImage(image)}
+      onClick={() => isInCart ? removeFromCart(image.id) : addToCart(image) }
     ></i>
   );
 

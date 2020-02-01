@@ -29,14 +29,24 @@ function ContextProvider(props) {
     );
   }
 
-  function addImage(image) {
+  function addToCart(image) {
     setCartItems(prevItems => [...new Set([...prevItems, image])]);
   }
 
-  console.log(cartItems);
+  function removeFromCart(id) {
+    setCartItems(prevItems => prevItems.filter(item => item.id != id));
+  }
 
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite, cartItems, addImage }}>
+    <Context.Provider
+      value={{
+        allPhotos,
+        toggleFavorite,
+        cartItems,
+        addToCart,
+        removeFromCart
+      }}
+    >
       {props.children}
     </Context.Provider>
   );
